@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gamebox </title>
+  </head>
+  <body>
+    <h1>Gamebox </h1>
+    <input type="text" id="questionInput">
+    <button id="submitButton">Submit</button>
+    <p id="answer"></p>
+
+    <script>
+      const submitButton = document.getElementById("submitButton");
+      const questionInput = document.getElementById("questionInput");
+      const answer = document.getElementById("answer");
+
+      submitButton.addEventListener("click", function() {
+        // Recherche de la réponse en utilisant la question fournie
+        fetch(`https://api.duckduckgo.com/?q=${questionInput.value}&format=json`)
+          .then(response => response.json())
+          .then(data => {
+            answer.innerText = data.Abst ract;
+          })
+          .catch(error => {
+            answer.innerText = "Désolé, je n'ai pas pu trouver une réponse.";
+          });
+      });
+    </script>
+  </body>
+</html>
+       <h2> by gamestar </h2>
